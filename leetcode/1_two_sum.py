@@ -47,15 +47,15 @@ def two_sum3(nums, target):
         return [j,i]
 
 '''
-方法四：用字典来建立哈希表求解
+方法四：用字典来建立哈希表求解（关键方法）
 '''
 def two_sum4(nums, target):
     hashmap={}
     for ind,num in enumerate(nums):
-        hashmap[num] = ind
+        hashmap[num] = ind#以数组的值为哈希表的键，以数组的索引为哈希表的值
     for i,num in enumerate(nums):
         j = hashmap.get(target - num)
-        if j is not None and i!=j:
+        if j is not None and i!=j:#判断索引是否重复
             return [i,j]
 
 '''
@@ -70,5 +70,5 @@ def two_sum5(nums, target):
 
 list = [11,15,2,2,7]
 target = 9
-output = two_sum3(list,target)
+output = two_sum4(list,target)
 print(output)
