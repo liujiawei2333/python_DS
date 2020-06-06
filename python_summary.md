@@ -13,9 +13,22 @@
 
 # 通用操作
 
-|              函数              |                             解释                             | 复杂度 |
-| :----------------------------: | :----------------------------------------------------------: | :----: |
-| `sorted(iterable,key,reverse)` | 对所有可迭代的对象排序，不仅是列表<br>返回一个新的对象，而不是在原来的基础上进行操作<br>`key=lambda x:x[1]`:按照对象中的第二个元素进行排序<br>`reverse=False(默认)升序，True降序` |        |
+|              函数              |                             解释                             |
+| :----------------------------: | :----------------------------------------------------------: |
+| `sorted(iterable,key,reverse)` | 对所有可迭代的对象排序，不仅是列表<br>返回一个新的对象，而不是在原来的基础上进行操作<br>`key=lambda x:x[1]`:按照对象中的第二个元素进行排序<br>`reverse=False(默认)升序，True降序` |
+|      `isinstance (a,int)`      |             判断a的数据类型是否为int，返回布尔值             |
+
+**获取变量的名称为字符串**
+
+```python
+import inspect, re
+
+def varname(p):
+  for line in inspect.getframeinfo(inspect.currentframe().f_back)[3]:
+    m = re.search(r'\bvarname\s*\(\s*([A-Za-z_][A-Za-z0-9_]*)\s*\)', line)
+    if m:
+      return m.group(1)
+```
 
 
 
@@ -23,9 +36,12 @@
 
 可变数据结构，元素可以相同，`list=[1,2,True,0.2]`
 
+创建二维数组:`list = [[0]*A for i in range(B)]`A列B行
+
 |                             函数                             |                             解释                             |    复杂度    |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------: |
-|                          `list[i]`                           |                        访问索引i的值                         |              |
+|                           `list()`                           |                          创建空列表                          |              |
+|                          `list[i]`                           |                        访问索引i的值                         |     O(1)     |
 |                         `list[::-1]`                         |                             反序                             |              |
 |                       `list(range(10)`                       |                        创建自然数列表                        |              |
 |            `list=[1,2,3,4]`  <br> ` a,b,c,d=list`            |                           列表解包                           |              |
@@ -44,7 +60,7 @@
 |                       `list.reverse()`                       |                         元素反序排列                         |              |
 |         `list.index(item)`<br>`list.index(item,a,b)`         | 第一个item元素出现的索引;<br>在索引a~b的范围内，第一个item出现的索引位置 |     O(1)     |
 |                      `list.count(item)`                      |                      item元素出现的次数                      |              |
-|                     `list.remove(item)`                      |                   移除第一个出现的item元素                   |              |
+|                     `list.remove(item)`                      |                   移除第一个出现的item元素                   |     O(n)     |
 |                        `del list[i]`                         |                      删除索引为i的元素                       |              |
 |                     `list.search(item)`                      |                 寻找item元素是否存在，布尔值                 |     O(n)     |
 |                         `max(list)`                          |                           最大元素                           |              |
@@ -131,8 +147,6 @@
 
 1. 对象和其子元素都进行了拷贝，地址完全不一样；
 2. 深拷贝后，拷贝对象会随原数据改变。
-
-
 
 
 

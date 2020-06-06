@@ -8,7 +8,7 @@ def longestCommonPrefix(strs):
         if len(set(i)) == 1:#i是一个元组，如果它的组成元素只有一种，则其对应集合的长度为1，即原列表中字符串的该位置元素相同
             s += i[0]
         else:
-            break           
+            break
     return s
 list_str =  ["flower","flow","flight"]
 y = longestCommonPrefix(list_str)
